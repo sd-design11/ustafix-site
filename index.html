@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UstaFix.uz - Ремонт техники</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+body{
+  background:linear-gradient(135deg,#020617,#0f172a);
+  color:#fff;
+  overflow-x:hidden;
+}
+header, .container, footer{text-align:center; max-width:1000px; margin:auto;}
+.hero{padding:60px 20px; animation:fadeIn 1s ease;}
+.hero h1{font-size:40px; background:linear-gradient(90deg,#38bdf8,#22c55e); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+.hero p{opacity:.8; margin-top:10px;}
+.btn{display:inline-block;margin-top:15px;padding:12px 18px;border-radius:12px;font-weight:bold;text-decoration:none;transition:.3s;}
+.btn:hover{transform:scale(1.05);}
+.btn-call{background:linear-gradient(90deg,#22c55e,#38bdf8); color:#000; margin-right:10px;}
+.btn-tg{background:linear-gradient(90deg,#38bdf8,#0ea5e9); color:#fff;}
+.card{background:rgba(255,255,255,.05); border-radius:16px; padding:25px; margin:20px 0; backdrop-filter:blur(10px); transition:.3s; opacity:0; transform:translateY(30px;}
+.card.show{opacity:1; transform:translateY(0);}
+.card:hover{background:rgba(255,255,255,.08); transform:translateY(-5px);}
+.card h2{color:#38bdf8; margin-bottom:10px;}
+footer{opacity:.6; padding:40px 20px; font-size:14px;}
+.lang{position:fixed; top:20px; right:20px; background:#020617; padding:8px 12px; border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,.2);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)}}
+.logo{max-width:200px;margin:0 auto 20px; display:block;}
+</style>
+</head>
+<body>
+
+<div class="lang" onclick="toggleLang()">RU / UZ</div>
+
+<header class="hero">
+  <!-- Логотип -->
+  <img src="UstaFixLogo.png" alt="UstaFix.uz Logo" class="logo">
+
+  <h1 id="title">Ремонт бытовой техники</h1>
+  <p id="subtitle">Быстро. Качественно. С гарантией.</p>
+
+  <div>
+    <a href="tel:+998770177787" class="btn btn-call" id="call">📞 Позвонить</a>
+    <a href="https://t.me/username" danegulov>💬 Telegram</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2 id="washTitle">Ремонт стиральных машин</h2>
+    <p id="washText">Не сливает воду, шумит или не включается? Починим быстро и недорого.</p>
+  </div>
+
+  <div class="card">
+    <h2 id="fridgeTitle">Ремонт холодильников</h2>
+    <p id="fridgeText">Не морозит или течет? Выезд мастера в день обращения.</p>
+  </div>
+
+  <div class="card">
+    <h2 id="acTitle">Ремонт кондиционеров</h2>
+    <p id="acText">Заправка фреоном, чистка и ремонт любых моделей.</p>
+  </div>
+
+  <div class="card">
+    <h2 id="whyTitle">Почему выбирают нас?</h2>
+    <p id="whyText">
+      ✔ Опыт более 5 лет<br>
+      ✔ Честные цены<br>
+      ✔ Быстрый выезд<br>
+      ✔ Гарантия на работу
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <span id="footer">© 2026 UstaFix.uz</span>
+</footer>
+
+<script>
+// анимация появления карточек
+const cards=document.querySelectorAll('.card');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');});
+},{threshold:.2});
+cards.forEach(c=>observer.observe(c));
+
+// переключение языков RU/UZ
+let ru=true;
+function toggleLang(){
+  ru=!ru;
+  if(!ru){
+    title.textContent="Maishiy texnika ta'miri";
+    subtitle.textContent="Tez. Sifatli. Kafolat bilan.";
+    call.textContent="📞 Qo'ng'iroq qilish";
+
+    washTitle.textContent="Kir yuvish mashinalari ta'miri";
+    washText.textContent="Suv chiqmayaptimi yoki ishlamayaptimi? Tez tuzatamiz.";
+
+    fridgeTitle.textContent="Muzlatkich ta'miri";
+    fridgeText.textContent="Sovutmayaptimi? Shu kunning o'zida tuzatamiz.";
+
+    acTitle.textContent="Konditsioner ta'miri";
+    acText.textContent="Freon to'ldirish, tozalash va ta'mirlash.";
+
+    whyTitle.textContent="Nega bizni tanlashadi?";
+    whyText.innerHTML="✔ 5+ yil tajriba<br>✔ Halol narxlar<br>✔ Tez yetib borish<br>✔ Kafolat";
+
+    footer.textContent="© 2026 UstaFix.uz";
+  }else location.reload();
+}
+</script>
+
+</body>
+</html>
